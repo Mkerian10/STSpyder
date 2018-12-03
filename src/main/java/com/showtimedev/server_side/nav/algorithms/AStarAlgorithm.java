@@ -1,6 +1,7 @@
 package com.showtimedev.server_side.nav.algorithms;
 
 import com.showtimedev.server_side.nav.Connectable;
+import com.showtimedev.server_side.nav.Weighable;
 import com.showtimedev.server_side.nav.dist.Heuristic;
 import com.showtimedev.server_side.nav.dist.Heuristics;
 import com.showtimedev.shared.misc.GenericTile;
@@ -10,13 +11,17 @@ import lombok.NonNull;
 
 import java.util.*;
 
-@Builder
-public class AStarPathfindingAlgorithm<T extends GenericTile & Connectable<T>> extends AbstractAlgorithm<T>{
+public class AStarAlgorithm<T extends GenericTile & Connectable<T> & Weighable> extends AbstractAlgorithm<T>{
+	
+	@Builder
+	public AStarAlgorithm(Heuristic heuristic, AlgorithmEndBehavior<T> algorithmEndBehavior){
+		super(heuristic, algorithmEndBehavior);
+	}
 	
 	@Override
 	public List<T> findPath(@NonNull T start, @NonNull T dest){
 		
-		var openSet = new PriorityQueue<AStarNode>(Comparator.comparingDouble(value -> value.g + heuristic.distance(value.node, dest)));
+		var openSet = new PriorityQueue<AStarNode>(Comparator.comparingDouble(value -> value.g + value.node.weight(heuristic, dest)));
 		var closedSet = new HashSet<T>();
 		
 		openSet.add(new AStarNode(start, 0));
@@ -31,7 +36,7 @@ public class AStarPathfindingAlgorithm<T extends GenericTile & Connectable<T>> e
 			
 			curr.node.edges().forEach(node -> {
 				if(closedSet.contains(node)) return;
-				openSet.add(new AStarNode(node, curr.g + heuristic.distance(node, curr.node)));
+				openSet.add(new AStarNode(node, curr.g + node.weight(heuristic, curr.node)));
 				this.pathMap.put(node, curr.node);
 			});
 			closedSet.add(curr.node);

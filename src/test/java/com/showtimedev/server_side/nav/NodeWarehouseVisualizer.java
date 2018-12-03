@@ -1,4 +1,4 @@
-package com.showtimedev.nav;
+package com.showtimedev.server_side.nav;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +25,7 @@ public class NodeWarehouseVisualizer{
 				drawPanel.setSize(new Dimension(600, 500));
 				drawPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 				
-				NodeWarehouseRenderer renderer = new NodeWarehouseRenderer(NodeWarehouseTest.testWarehouse());
+				NodeWarehouseRenderer renderer = new NodeWarehouseRenderer(RawNodeWarehouseTest.testWarehouse());
 				
 				renderer.setBounds(0, 0, 600, 500);
 				renderer.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));

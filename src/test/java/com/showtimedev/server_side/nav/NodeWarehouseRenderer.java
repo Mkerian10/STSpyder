@@ -1,4 +1,7 @@
-package com.showtimedev.nav;
+package com.showtimedev.server_side.nav;
+
+import com.showtimedev.server_side.nav.raw_nav.RawNode;
+import com.showtimedev.server_side.nav.raw_nav.RawNodeWarehouse;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +12,7 @@ import java.util.stream.Collectors;
 public class NodeWarehouseRenderer extends JPanel{
 	
 	
-	public NodeWarehouseRenderer(NodeWarehouse nw){
+	public NodeWarehouseRenderer(RawNodeWarehouse nw){
 		this.nw = nw;
 		
 		nodes = nodes(nw);
@@ -28,7 +31,7 @@ public class NodeWarehouseRenderer extends JPanel{
 	
 	private final int maxY;
 	
-	private final NodeWarehouse nw;
+	private final RawNodeWarehouse nw;
 	
 	private final Collection<RawNode> nodes;
 	
@@ -94,9 +97,9 @@ public class NodeWarehouseRenderer extends JPanel{
 		return 43;
 	}
 	
-	private final Collection<RawNode> nodes(NodeWarehouse nw){
+	private final Collection<RawNode> nodes(RawNodeWarehouse nw){
 		try{
-			Field f = NodeWarehouse.class.getDeclaredField("worldGraph");
+			Field f = RawNodeWarehouse.class.getDeclaredField("worldGraph");
 			f.setAccessible(true);
 			
 			Map<Integer, RawNode> map = (Map<Integer, RawNode>) f.get(nw);

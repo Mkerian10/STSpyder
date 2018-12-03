@@ -1,4 +1,4 @@
-package com.showtimedev.client.raw_data;
+package com.showtimedev.shared.misc.raw_data;
 
 public class RawTile{
 	

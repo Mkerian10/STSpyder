@@ -1,9 +1,8 @@
-package com.showtimedev.server_side.nav;
+package com.showtimedev.server_side.nav.raw_nav;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import com.showtimedev.server_side.nav.raw_nav.RawNode;
 import com.showtimedev.server_side.nav.algorithms.AStarAlgorithm;
 import com.showtimedev.server_side.utils.Pair;
 

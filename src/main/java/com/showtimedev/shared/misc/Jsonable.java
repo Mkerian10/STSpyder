@@ -1,4 +1,4 @@
-package com.showtimedev.misc;
+package com.showtimedev.shared.misc;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

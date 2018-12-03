@@ -1,4 +1,4 @@
-package com.showtimedev.client.raw_data;
+package com.showtimedev.shared.misc.raw_data;
 
 import org.powerbot.bot.rt4.client.Client;
 import org.powerbot.bot.rt4.client.CollisionMap;

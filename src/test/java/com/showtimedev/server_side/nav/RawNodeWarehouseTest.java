@@ -1,5 +1,7 @@
 package com.showtimedev.server_side.nav;
 
+import com.showtimedev.server_side.nav.raw_nav.RawNode;
+import com.showtimedev.server_side.nav.raw_nav.RawNodeWarehouse;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -7,16 +9,16 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
-import static com.showtimedev.server_side.nav.RawNode.*;
+import static com.showtimedev.server_side.nav.raw_nav.RawNode.*;
 
-public class NodeWarehouseTest{
+public class RawNodeWarehouseTest{
 	
 	private static RawNode[][] testNodes;
 	
 	@Test
 	public void serializeTest() throws IOException, ClassNotFoundException{
 		
-		NodeWarehouse warehouse = testWarehouse();
+		RawNodeWarehouse warehouse = testWarehouse();
 		
 		RawNode r = warehouse.retrieve(0 ,0, 0);
 		String json = r.toJson();
@@ -24,17 +26,17 @@ public class NodeWarehouseTest{
 	}
 	
 	/**
-	 * Gets a NodeWarehouse for testing purposes. Reference image can be found in test/externals/WarehouseTestImage.png
+	 * Gets a RawNodeWarehouse for testing purposes. Reference image can be found in test/externals/WarehouseTestImage.png
 	 * <p>
 	 * Size: 12x11
 	 */
-	public static NodeWarehouse testWarehouse(){
-		NodeWarehouse nw = NodeWarehouse.getInstance();
+	public static RawNodeWarehouse testWarehouse(){
+		RawNodeWarehouse nw = RawNodeWarehouse.getInstance();
 		loadInto(testNodes, nw);
 		return nw;
 	}
 	
-	private static void loadInto(RawNode[][] rnarr, NodeWarehouse nw){
+	private static void loadInto(RawNode[][] rnarr, RawNodeWarehouse nw){
 		
 		RawNode[] rarr = Arrays.stream(rnarr).flatMap(Arrays::stream).toArray(RawNode[]::new);
 		
@@ -48,7 +50,7 @@ public class NodeWarehouseTest{
 	
 	private static Method getLoadIntoMethod(Object mw){
 		try{
-			Method m = NodeWarehouse.class.getDeclaredMethod("loadInto", RawNode[].class);
+			Method m = RawNodeWarehouse.class.getDeclaredMethod("loadInto", RawNode[].class);
 			m.setAccessible(true);
 			return m;
 		}catch(NoSuchMethodException e){

@@ -5,11 +5,15 @@ import com.showtimedev.shared.misc.GenericTile;
 
 import java.util.List;
 
-public interface NoPathFoundBehavior<T extends GenericTile & Connectable<T>>{
+public interface AlgorithmEndBehavior<T extends GenericTile & Connectable<T>>{
 	
 	List<T> returnNoPath();
 	
-	static<K extends GenericTile & Connectable<K>> NoPathFoundBehavior<K> defaultBehavior(){
+	default List<T> pathFound(List<T> path){
+		return path;
+	}
+	
+	static<K extends GenericTile & Connectable<K>> AlgorithmEndBehavior<K> defaultBehavior(){
 		return () -> null;
 	}
 	

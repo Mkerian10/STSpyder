@@ -1,5 +1,6 @@
 package com.showtimedev.server_side.utils;
 
+import com.showtimedev.server_side.nav.raw_nav.RawPathLoader;
 import com.showtimedev.server_side.nav.raw_nav.RawNodeWarehouse;
 import com.showtimedev.server_side.nav.RawNodeWarehouseTest;
 import com.showtimedev.server_side.nav.raw_nav.RawNode;
@@ -9,7 +10,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class CacheTest{
+public class RawPathLoaderTest{
 	
 	@Test
 	public void testCache(){
@@ -35,12 +36,12 @@ public class CacheTest{
 		
 		sw.reset();
 		
-		Cache cache = new Cache();
+		RawPathLoader rawPathLoader = new RawPathLoader();
 		
 		sw.start();
 		
 		for(int i = 0; i < 1000000; i++){
-			cache.load(src, dest);
+			rawPathLoader.load(src, dest);
 		}
 		
 		sw.stop();

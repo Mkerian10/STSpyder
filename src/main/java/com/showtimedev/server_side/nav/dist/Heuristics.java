@@ -1,4 +1,4 @@
-package com.showtimedev.server_side.nav.pathfinder;
+package com.showtimedev.server_side.nav.dist;
 
 public interface Heuristics{
 	

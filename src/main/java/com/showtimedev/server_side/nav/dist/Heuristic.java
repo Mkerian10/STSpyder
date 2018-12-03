@@ -1,9 +1,9 @@
-package com.showtimedev.server_side.nav.pathfinder;
+package com.showtimedev.server_side.nav.dist;
 
-import com.showtimedev.server_side.nav.RawNode;
+import com.showtimedev.shared.misc.GenericTile;
 
 public interface Heuristic{
-
-	double distance(RawNode a, RawNode b);
-
+	
+	double distance(GenericTile a, GenericTile b);
+	
 }

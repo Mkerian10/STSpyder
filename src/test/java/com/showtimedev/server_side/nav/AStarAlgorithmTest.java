@@ -1,7 +1,9 @@
 package com.showtimedev.server_side.nav;
 
-import com.showtimedev.server_side.nav.algorithms.AStarPathfindingAlgorithm;
+import com.showtimedev.server_side.nav.algorithms.AStarAlgorithm;
 import com.showtimedev.server_side.nav.dist.Heuristics;
+import com.showtimedev.server_side.nav.raw_nav.RawNode;
+import com.showtimedev.server_side.nav.raw_nav.RawNodeWarehouse;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -9,12 +11,12 @@ import java.util.LinkedList;
 
 import static org.junit.Assert.*;
 
-public class AStarPathfindingAlgorithmTest{
+public class AStarAlgorithmTest{
 	
 	@Test
 	public void findPath(){
 		
-		NodeWarehouse warehouse = NodeWarehouseTest.testWarehouse();
+		RawNodeWarehouse warehouse = RawNodeWarehouseTest.testWarehouse();
 		
 		testSimpleCorrectness(warehouse);
 		testModerateCorrectness(warehouse);
@@ -24,9 +26,9 @@ public class AStarPathfindingAlgorithmTest{
 		
 	}
 	
-	private void testSimpleCorrectness(NodeWarehouse warehouse){
+	private void testSimpleCorrectness(RawNodeWarehouse warehouse){
 		
-		AStarPathfindingAlgorithm algorithm = AStarPathfindingAlgorithm.builder().build();
+		AStarAlgorithm algorithm = AStarAlgorithm.builder().build();
 		
 		RawNode start = warehouse.retrieve(0, 0, 0);
 		assertNotNull(start);
@@ -44,9 +46,9 @@ public class AStarPathfindingAlgorithmTest{
 		
 	}
 	
-	private void testModerateCorrectness(NodeWarehouse warehouse){
+	private void testModerateCorrectness(RawNodeWarehouse warehouse){
 		
-		AStarPathfindingAlgorithm algorithm = AStarPathfindingAlgorithm.builder().build();
+		AStarAlgorithm algorithm = AStarAlgorithm.builder().build();
 		
 		RawNode start = warehouse.retrieve(0, 0, 0);
 		assertNotNull(start);
@@ -68,9 +70,9 @@ public class AStarPathfindingAlgorithmTest{
 		
 	}
 	
-	private void testComplexCorrectness(NodeWarehouse warehouse){
+	private void testComplexCorrectness(RawNodeWarehouse warehouse){
 		
-		AStarPathfindingAlgorithm algorithm = AStarPathfindingAlgorithm.builder().heuristic(Heuristics.diagonal).build();
+		AStarAlgorithm algorithm = AStarAlgorithm.builder().heuristic(Heuristics.diagonal).build();
 		
 		RawNode start = warehouse.retrieve(1, 10, 0);
 		assertNotNull(start);

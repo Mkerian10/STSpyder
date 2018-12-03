@@ -1,4 +1,4 @@
-package com.showtimedev.server_side.nav;
+package com.showtimedev.server_side.nav.raw_nav;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.showtimedev.shared.misc.GenericTile;
@@ -12,8 +12,6 @@ import java.util.Map;
 
 @NoArgsConstructor
 public class RawNodeWarehouse{
-	
-	private static String version = "0.1.0";
 	
 	private static RawNodeWarehouse instance = new RawNodeWarehouse();
 	

@@ -1,4 +1,4 @@
-package com.showtimedev.client.raw_data;
+package com.showtimedev.client;
 
 import org.powerbot.script.PollingScript;
 import org.powerbot.script.Script;
@@ -9,7 +9,6 @@ public class CollisionDataCollectorScript extends PollingScript<ClientContext>{
 	
 	@Override
 	public void poll(){
-	
 	
 	}
 }

@@ -1,5 +1,8 @@
-package com.showtimedev.server_side.nav;
+package com.showtimedev.server_side.nav.raw_nav;
 
+import com.showtimedev.server_side.nav.Connectable;
+import com.showtimedev.server_side.nav.Weighable;
+import com.showtimedev.server_side.nav.dist.Heuristic;
 import com.showtimedev.shared.misc.GenericTile;
 import com.showtimedev.shared.misc.Jsonable;
 
@@ -9,19 +12,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
-public class RawNode extends GenericTile implements Jsonable, Serializable, Connectable<RawNode>{
+public class RawNode extends GenericTile implements Connectable<RawNode>, Weighable, Jsonable, Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	
-	
-	public RawNode(short x, short y, byte z, byte navFlags){
-		super(x, y, z);
-		this.navFlags = navFlags;
-	}
-	
-	public RawNode(int x, int y, int z, int navFlags){
-		this((short)x, (short)y, (byte)(z), (byte)navFlags);
-	}
 	
 	public static final byte N = 0x1;
 	public static final byte NE = 0x2;
@@ -31,6 +24,15 @@ public class RawNode extends GenericTile implements Jsonable, Serializable, Conn
 	public static final byte SW = 0x20;
 	public static final byte W = 0x40;
 	public static final byte NW = (byte) 0x80;
+	
+	public RawNode(short x, short y, byte z, byte navFlags){
+		super(x, y, z);
+		this.navFlags = navFlags;
+	}
+	
+	public RawNode(int x, int y, int z, int navFlags){
+		this((short)x, (short)y, (byte)(z), (byte)navFlags);
+	}
 	
 	public final byte navFlags;
 	
@@ -43,8 +45,19 @@ public class RawNode extends GenericTile implements Jsonable, Serializable, Conn
 			return new ArrayList<>();
 		}
 		
-		List<RawNode> nodes = new ArrayList<>();
-		
+		List<RawNode> nodes = new ArrayList<>(popcount);
+		addTilesFromFlags(nodes);
+		return nodes;
+	}
+	
+	private RawNode retrieve(int x, int y, int z){
+		if(warehouse == null){
+			warehouse = RawNodeWarehouse.getInstance();
+		}
+		return Objects.requireNonNull(warehouse.retrieve(x, y, z), "Raw Node not found in RawNodeWarehouse");
+	}
+	
+	private void addTilesFromFlags(List<RawNode> nodes){
 		if((N & navFlags) != 0){
 			nodes.add(retrieve(x, y + 1, z));
 		}
@@ -76,14 +89,11 @@ public class RawNode extends GenericTile implements Jsonable, Serializable, Conn
 		if((NW & navFlags) != 0){
 			nodes.add(retrieve(x - 1, y + 1, z));
 		}
-		return nodes;
 	}
 	
-	private RawNode retrieve(int x, int y, int z){
-		if(warehouse == null){
-			warehouse = RawNodeWarehouse.getInstance();
-		}
-		return Objects.requireNonNull(warehouse.retrieve(x, y, z), "Raw Node not found in RawNodeWarehouse");
+	@Override
+	public double weight(Heuristic heuristic, GenericTile comp){
+		return heuristic.distance(this, comp);
 	}
 	
 	@Override
