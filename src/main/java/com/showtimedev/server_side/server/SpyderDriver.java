@@ -7,14 +7,16 @@ import lombok.Cleanup;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class SpyderDriver{
+public final class SpyderDriver{
 	
 	public static void main(String[] args){
 		
 		var manager = new FileManager(FileManager.Environment.TEST);
 		initNodes(manager);
 		
-		
+		SpyderServer spyderServer = new SpyderServer();
+		spyderServer.setup();
+		System.out.println("Server setup");
 	}
 	
 	private static void initNodes(FileManager manager){

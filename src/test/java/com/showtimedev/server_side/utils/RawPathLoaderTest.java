@@ -8,6 +8,8 @@ import com.showtimedev.server_side.nav.algorithms.AStarAlgorithm;
 import com.showtimedev.shared.misc.StopWatch;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class RawPathLoaderTest{
@@ -28,7 +30,7 @@ public class RawPathLoaderTest{
 		sw.start();
 		for(int i = 0; i < 1000000; i++){
 			AStarAlgorithm<RawNode> algorithm = AStarAlgorithm.<RawNode>builder().build();
-			algorithm.findPath(src, dest);
+			algorithm.findPath(new ArrayList<>(), src, dest);
 		}
 		sw.stop();
 		System.out.println(sw.getTime());

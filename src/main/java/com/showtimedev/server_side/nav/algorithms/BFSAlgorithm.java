@@ -7,10 +7,7 @@ import lombok.Builder;
 import lombok.NonNull;
 
 import javax.annotation.Nullable;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public final class BFSAlgorithm<T extends GenericTile & Connectable<T>> extends AbstractAlgorithm<T>{
 	
@@ -21,17 +18,16 @@ public final class BFSAlgorithm<T extends GenericTile & Connectable<T>> extends 
 	
 	@Nullable
 	@Override
-	public List<T> findPath(@NonNull T start, @NonNull T dest){
-		var queue = new LinkedList<T>();
+	public List<T> findPath(@NonNull Collection<T> extraStarts, T trueStart, @NonNull T dest){
 		var closedSet = new HashSet<T>();
-		
-		queue.addFirst(start);
+		var queue = new LinkedList<>(extraStarts);
+		queue.add(trueStart);
 		
 		while(queue.size() > 0){
 			var curr = queue.pollFirst();
 			
 			if(Objects.requireNonNull(curr).equals(dest)){
-				return finishAndReturn(start, dest);
+				return finishAndReturn(trueStart, dest);
 			}
 			
 			curr.edges().forEach(t -> {

@@ -6,6 +6,7 @@ import com.google.common.cache.LoadingCache;
 import com.showtimedev.server_side.nav.algorithms.AStarAlgorithm;
 import com.showtimedev.server_side.utils.Pair;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -17,7 +18,7 @@ public class RawPathLoader{
 			@Override
 			public List<RawNode> load(Pair<RawNode, RawNode> key){
 				var algorithm = AStarAlgorithm.<RawNode>builder().build();
-				var path = algorithm.findPath(key.a, key.b);
+				var path = algorithm.findPath(new ArrayList<>(), key.a, key.b);
 				return Objects.requireNonNull(path);
 			}
 		};

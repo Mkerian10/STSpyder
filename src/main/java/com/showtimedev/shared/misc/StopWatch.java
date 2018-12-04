@@ -3,7 +3,7 @@ package com.showtimedev.shared.misc;
 /**
  * @Source https://apache.googlesource.com/commons-lang/+/trunk/src/main/java/org/apache/commons/lang3/time/StopWatch.java
  */
-public class StopWatch {
+public final class StopWatch {
 	private static final long NANO_2_MILLIS = 1000000L;
 	
 	/**

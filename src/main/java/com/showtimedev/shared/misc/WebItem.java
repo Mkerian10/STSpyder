@@ -9,4 +9,7 @@ public enum WebItem implements Jsonable{
 	
 	private final int[] ids;
 	
+	public int[] getIds(){
+		return ids;
+	}
 }

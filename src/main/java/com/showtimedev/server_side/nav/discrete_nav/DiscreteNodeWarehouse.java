@@ -44,6 +44,11 @@ public class DiscreteNodeWarehouse{
 		return discreteEdges.get(node.hashCode());
 	}
 	
+	public DiscreteEdge retrieveEdge(DiscreteNode src, DiscreteNode dest){
+		Collection<DiscreteEdge> edges = retrieveEdges(src);
+		return edges.stream().filter(e -> e.dest.equals(dest)).findFirst().orElse(null);
+	}
+	
 	@Nullable
 	public byte[] serialize(){
 		var serializeableList = new ArrayList<>(discreteGraph.values());

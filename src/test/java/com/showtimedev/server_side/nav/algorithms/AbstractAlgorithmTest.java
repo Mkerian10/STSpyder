@@ -5,6 +5,7 @@ import com.showtimedev.server_side.nav.RawNodeWarehouseTest;
 import com.showtimedev.server_side.nav.raw_nav.RawNode;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -35,7 +36,7 @@ public class AbstractAlgorithmTest{
 	
 	private void test(RawNode src, RawNode dest, AbstractAlgorithm<RawNode> algorithm){
 		
-		List<RawNode> path = algorithm.findPath(src, dest);
+		List<RawNode> path = algorithm.findPath(new ArrayList<>(), src, dest);
 		
 		assertNotNull(path);
 		assertTrue(path.contains(src));

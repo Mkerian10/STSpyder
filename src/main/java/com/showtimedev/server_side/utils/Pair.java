@@ -3,7 +3,7 @@ package com.showtimedev.server_side.utils;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode
-public class Pair<A, B>{
+public final class Pair<A, B>{
 	
 	public Pair(A a, B b){
 		this.a = a;

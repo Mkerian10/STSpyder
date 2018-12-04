@@ -2,7 +2,7 @@ package com.showtimedev.shared.misc;
 
 import java.io.Serializable;
 
-public class PlayerConfig implements Serializable{
+public final class PlayerConfig implements Serializable{
 	
 	private static final long serialVersionUID = 39571279812L;
 	

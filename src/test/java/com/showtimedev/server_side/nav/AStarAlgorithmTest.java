@@ -6,6 +6,7 @@ import com.showtimedev.server_side.nav.raw_nav.RawNode;
 import com.showtimedev.server_side.nav.raw_nav.RawNodeWarehouse;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -40,7 +41,7 @@ public class AStarAlgorithmTest{
 		knownPath.addLast(warehouse.retrieve(0, 1, 0));
 		knownPath.addLast(dest);
 		
-		LinkedList<RawNode> foundPath = (LinkedList<RawNode>)algorithm.findPath(start, dest);
+		LinkedList<RawNode> foundPath = (LinkedList<RawNode>)algorithm.findPath(new ArrayList(), start, dest);
 
 		assertEquals(foundPath, knownPath);
 		
@@ -64,7 +65,7 @@ public class AStarAlgorithmTest{
 		knownPath.addLast(warehouse.retrieve(3, 2, 0));
 		knownPath.addLast(warehouse.retrieve(3, 3, 0));
 		
-		LinkedList<RawNode> foundPath = (LinkedList<RawNode>)algorithm.findPath(start, dest);
+		LinkedList<RawNode> foundPath = (LinkedList<RawNode>)algorithm.findPath(new ArrayList<>(), start, dest);
 		
 		assertEquals(foundPath, knownPath);
 		
@@ -108,7 +109,7 @@ public class AStarAlgorithmTest{
 		knownPath.addLast(warehouse.retrieve(11, 1, 0));
 		knownPath.addLast(warehouse.retrieve(11, 2, 0));
 		
-		LinkedList<RawNode> foundPath = (LinkedList<RawNode>)algorithm.findPath(start, dest);
+		LinkedList<RawNode> foundPath = (LinkedList<RawNode>)algorithm.findPath(new ArrayList(), start, dest);
 		
 		System.out.println(Arrays.toString(foundPath.toArray(new RawNode[foundPath.size()])));
 		

@@ -10,10 +10,9 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import javax.annotation.Nullable;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public final class DijkstrasAlgorithm<T extends GenericTile & Connectable<T> & Weighable> extends AbstractAlgorithm<T>{
 	
@@ -24,17 +23,18 @@ public final class DijkstrasAlgorithm<T extends GenericTile & Connectable<T> & W
 	
 	@Nullable
 	@Override
-	public List<T> findPath(@NonNull T start, @NonNull T dest){
+	public List<T> findPath(@NonNull Collection<T> extraStarts, T trueStart, @NonNull T dest){
 		var queue = new PriorityQueue<DijkstrasNode>(Comparator.comparingDouble(value -> value.weight));
 		var closedSet = new HashSet<T>();
 		
-		queue.add(new DijkstrasNode(start, 0));
+		queue.addAll(extraStarts.stream().map(t -> new DijkstrasNode(t, 12)).collect(Collectors.toList()));
+		queue.add(new DijkstrasNode(trueStart, 0));
 		
 		while(queue.size() > 0){
 			var curr = queue.poll();
 			
 			if(curr.node.equals(dest)){
-				return finishAndReturn(start, dest);
+				return finishAndReturn(trueStart, dest);
 			}
 			
 			curr.node.edges().forEach(t -> {

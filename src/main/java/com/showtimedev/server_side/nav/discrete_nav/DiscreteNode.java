@@ -13,9 +13,13 @@ public class DiscreteNode extends GenericTile implements Connectable<DiscreteNod
 		super(x, y, z);
 	}
 	
+	public DiscreteNode(int x, int y, int z){
+		this((short) x, (short) y, (byte) z);
+	}
+	
 	@Override
 	public Collection<DiscreteNode> edges(){
-		return null;
+		return DiscreteEdgeLocatorFactory.getFactory().edges(this);
 	}
 	
 	@Override

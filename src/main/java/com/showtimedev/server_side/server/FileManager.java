@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-public class FileManager{
+public final class FileManager{
 	
 	public static final String ENV_PROD = "/prod";
 	
