@@ -3,7 +3,7 @@ package com.showtimedev.shared.misc;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public interface Jsonable<T>{
+public interface Jsonable{
 	
 	default String toJson(){
 		return toJson(false);

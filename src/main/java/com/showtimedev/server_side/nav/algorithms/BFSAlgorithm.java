@@ -12,7 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class BFSAlgorithm<T extends GenericTile & Connectable<T>> extends AbstractAlgorithm<T>{
+public final class BFSAlgorithm<T extends GenericTile & Connectable<T>> extends AbstractAlgorithm<T>{
 	
 	@Builder
 	public BFSAlgorithm(Heuristic heuristic, AlgorithmEndBehavior<T> algorithmEndBehavior){

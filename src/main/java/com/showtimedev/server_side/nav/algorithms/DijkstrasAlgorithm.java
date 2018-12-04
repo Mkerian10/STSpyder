@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.PriorityQueue;
 
-public class DijkstrasAlgorithm<T extends GenericTile & Connectable<T> & Weighable> extends AbstractAlgorithm<T>{
+public final class DijkstrasAlgorithm<T extends GenericTile & Connectable<T> & Weighable> extends AbstractAlgorithm<T>{
 	
 	@Builder
 	public DijkstrasAlgorithm(Heuristic heuristic, AlgorithmEndBehavior<T> algorithmEndBehavior){

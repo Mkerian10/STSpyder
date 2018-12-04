@@ -1,5 +1,6 @@
 package com.showtimedev.server_side.nav;
 
+import com.showtimedev.shared.misc.PlayerConfig;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;

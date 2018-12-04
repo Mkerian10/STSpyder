@@ -11,7 +11,7 @@ import lombok.NonNull;
 
 import java.util.*;
 
-public class AStarAlgorithm<T extends GenericTile & Connectable<T> & Weighable> extends AbstractAlgorithm<T>{
+public final class AStarAlgorithm<T extends GenericTile & Connectable<T> & Weighable> extends AbstractAlgorithm<T>{
 	
 	@Builder
 	public AStarAlgorithm(Heuristic heuristic, AlgorithmEndBehavior<T> algorithmEndBehavior){

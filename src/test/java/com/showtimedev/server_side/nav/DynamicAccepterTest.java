@@ -1,6 +1,7 @@
 package com.showtimedev.server_side.nav;
 
 import com.showtimedev.server_side.utils.SerializationUtils;
+import com.showtimedev.shared.misc.PlayerConfig;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

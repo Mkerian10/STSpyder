@@ -1,15 +1,13 @@
-package com.showtimedev.server_side.nav.discrete_nav;
+package com.showtimedev.server_side.nav.web;
 
 import com.showtimedev.server_side.nav.raw_nav.RawNode;
 import com.showtimedev.server_side.nav.raw_nav.RawPathLoader;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-public class DiscretePathLoader{
-	
-	public DiscretePathLoader(RawPathLoader rawPathLoader){
-		this.rawPathLoader = rawPathLoader;
-	}
+@RequiredArgsConstructor
+public class WebResultLoader{
 	
 	private final RawPathLoader rawPathLoader;
 	

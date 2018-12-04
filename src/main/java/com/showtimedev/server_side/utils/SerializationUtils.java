@@ -5,8 +5,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+@Deprecated
 public class SerializationUtils{
 	
+	//Testing only
+	@Deprecated
 	public static<T> T returnSerialized(T obj){
 		try(var baos = new ByteArrayOutputStream(); var outputStream = new ObjectOutputStream(baos)){
 			outputStream.writeObject(obj);

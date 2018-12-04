@@ -1,5 +1,7 @@
 package com.showtimedev.server_side.nav;
 
+import com.showtimedev.shared.misc.PlayerConfig;
+
 import java.io.Serializable;
 
 public interface DynamicAccepter extends Serializable{
